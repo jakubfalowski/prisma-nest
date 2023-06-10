@@ -12,12 +12,12 @@ export class TeamService {
     });
   }
 
-  async getMatchesByTeamId(id: number) {
-    const team = await this.prismaService.team.findMany({
-      where: {
-        id: id,
-      },
-    });
-    return team;
-  }
+  // async getMatchesByTeamId(id: number) {
+  //   const matches = await this.prismaService.matches.findMany({
+  //     where: {
+  //       id_home: id,
+  //     },
+  //   });
+  //   return matches;
+  // }
 }

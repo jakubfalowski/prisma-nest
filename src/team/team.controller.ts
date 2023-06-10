@@ -15,8 +15,8 @@ export class TeamController {
     }
   }
 
-  @Get('/get-matches-team')
-  async getPlayerId(@Query() team: ParamDto) {
-    return this.teamService.getMatchesByTeamId(team.id);
-  }
+  // @Get('/get-matches-team')
+  // async getPlayerId(@Query() team: ParamDto) {
+  //   return this.teamService.getMatchesByTeamId(team.id);
+  // }
 }

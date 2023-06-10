@@ -17,10 +17,22 @@ export class MatchService {
       homeGoals: matchDto.homeGoals,
       awayGoals: matchDto.awayGoals,
       result: matchDto.result,
+      date: matchDto.date,
+      round: matchDto.round,
     };
 
     return this.prismaService.matches.create({
       data: data,
     });
+  }
+
+  async getMatchesByTeamId(teamId: string) {
+    const parsedTeamId = parseInt(teamId);
+    const matches = await this.prismaService.matches.findMany({
+      where: {
+        OR: [{ id_home: parsedTeamId }, { id_away: parsedTeamId }],
+      },
+    });
+    return matches;
   }
 }

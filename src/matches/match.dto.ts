@@ -21,4 +21,18 @@ export class MatchPostDto {
   @ApiProperty({ description: 'Wpisz zwycięzce 1/X/2 ' })
   @IsString()
   result: string;
+
+  @ApiProperty({ description: 'Wpisz date ' })
+  @IsString()
+  date: string;
+
+  @ApiProperty({ description: 'Wpisz kolejke ' })
+  @IsString()
+  round: string;
+}
+
+export class ParamDto {
+  @ApiProperty({ description: 'Wpisz ID druzyny' })
+  @IsString()
+  teamId: string;
 }

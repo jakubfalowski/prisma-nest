@@ -1,4 +1,5 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Get, Post, Query } from '@nestjs/common';
+import { ParamDto } from 'src/matches/match.dto';
 import { MatchPostDto } from './match.dto';
 import { MatchService } from './match.service';
 
@@ -15,8 +16,8 @@ export class MatchController {
     }
   }
 
-  // @Get('/get-matches-team')
-  // async getPlayerId(@Query() team: ParamDto) {
-  //   return this.teamService.getMatchesByTeamId(team.id);
-  // }
+  @Get('/get-matches-team')
+  async getPlayerId(@Query() match: ParamDto) {
+    return this.matchService.getMatchesByTeamId(match.teamId);
+  }
 }
