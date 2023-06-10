@@ -1,12 +1,11 @@
 import { Module } from '@nestjs/common';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
-import { CartModule } from './cart/cart.module';
-import { PlayerModule } from './player/player.module';
-import { UserModule } from './user/user.module';
+import { TeamModule } from './team/team.module';
+import { MatchModule } from './matches/match.module';
 
 @Module({
-  imports: [UserModule, PlayerModule, CartModule],
+  imports: [TeamModule, MatchModule],
   controllers: [AppController],
   providers: [AppService],
 })
