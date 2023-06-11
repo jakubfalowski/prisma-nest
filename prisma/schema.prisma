@@ -89,3 +89,10 @@ model Fminside {
   Physical      Int
 }
 
+model Blog {
+  id         Int      @default(autoincrement()) @id
+  title String
+  description String @db.VarChar(1000)
+  date String
+  imgUrl String
+}
