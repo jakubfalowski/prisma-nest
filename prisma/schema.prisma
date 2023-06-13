@@ -50,6 +50,7 @@ model Player {
 model Sofascore {
   id       Int      @default(autoincrement()) @id
   player   Player[] @relation("SofaStat")
+  Name String
   Dribbling     Int
   BeingFouled   Int
   PercentHeader Int
@@ -68,6 +69,7 @@ model Sofascore {
 model Futhead {
   id       Int      @default(autoincrement()) @id
   player   Player[] @relation("FifaStat")
+  Name String
   Overall       Int
   Pace          Int
   Shooting      Int
@@ -80,6 +82,7 @@ model Futhead {
 model Fminside {
   id         Int      @default(autoincrement()) @id
   player   Player[] @relation("FmStat")
+  Name String
   Overall       Int
   Pace          Int
   Shooting      Int

@@ -1,7 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class FutheadPostDto {
+  @ApiProperty({ description: 'Wpisz nazwe' })
+  @IsString()
+  Name: string;
+
   @ApiProperty({ description: 'Wpisz ocena ogólną' })
   @IsNumber()
   Overall: number;

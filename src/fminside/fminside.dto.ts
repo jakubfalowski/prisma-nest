@@ -1,7 +1,11 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNumber } from 'class-validator';
+import { IsNumber, IsString } from 'class-validator';
 
 export class FminsidePostDto {
+  @ApiProperty({ description: 'Wpisz nazwe' })
+  @IsString()
+  Name: string;
+
   @ApiProperty({ description: 'Wpisz ocena ogólną' })
   @IsNumber()
   Overall: number;
@@ -29,4 +33,25 @@ export class FminsidePostDto {
   @ApiProperty({ description: 'Wpisz fizyczność' })
   @IsNumber()
   Physical: number;
+}
+
+export class FminsideGetParamDto {
+  @ApiProperty({ description: 'Wpisz statystyke' })
+  @IsString()
+  stat:
+    | 'Overall'
+    | 'Pace'
+    | 'Shooting'
+    | 'Passing'
+    | 'Dribbling'
+    | 'Defense'
+    | 'Physical';
+
+  @ApiProperty({ description: 'Wpisz sortowaną gre' })
+  @IsString()
+  game: 'futhead' | 'fminside';
+
+  @ApiProperty({ description: 'Wpisz rodzaj sortowania' })
+  @IsString()
+  sortBy: 'ASC' | 'DESC';
 }
