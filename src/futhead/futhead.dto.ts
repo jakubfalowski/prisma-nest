@@ -6,6 +6,22 @@ export class FutheadPostDto {
   @IsString()
   Name: string;
 
+  @ApiProperty({ description: 'Wpisz link do avatara' })
+  @IsString()
+  faceUrl: string;
+
+  @ApiProperty({ description: 'Wpisz link do flagi' })
+  @IsString()
+  nationUrl: string;
+
+  @ApiProperty({ description: 'Wpisz nazwe klubu' })
+  @IsString()
+  Club: string;
+
+  @ApiProperty({ description: 'Wpisz link do loga' })
+  @IsString()
+  ClubUrl: string;
+
   @ApiProperty({ description: 'Wpisz ocena ogólną' })
   @IsNumber()
   Overall: number;
