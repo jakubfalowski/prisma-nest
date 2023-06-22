@@ -34,10 +34,10 @@ model Matches {
 model Sofascore {
   id       Int      @default(autoincrement()) @id
   Name String
-  Dribbling     Int
+  Dribbling     Float
   BeingFouled   Int
-  PercentHeader Int
-  PercentGround Int
+  PercentHeader Float
+  PercentGround Float
   Goals         Int
   Shots         Int
   Interceptions Int
@@ -46,7 +46,9 @@ model Sofascore {
   Assists       Int
   KeyPasses     Int
   DangerousSituation Int
-  PercentAccuracyPasses Int
+  PercentAccuracyPasses Float
+  Minutes Int
+  Rating Float
 }
 
 model Futhead {

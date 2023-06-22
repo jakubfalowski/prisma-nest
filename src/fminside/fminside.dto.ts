@@ -55,3 +55,16 @@ export class FminsideGetParamDto {
   @IsString()
   sortBy: 'ASC' | 'DESC';
 }
+
+export class FminsideGetStatParamDto {
+  @ApiProperty({ description: 'Wpisz statystyke' })
+  @IsString()
+  stat:
+    | 'Overall'
+    | 'Pace'
+    | 'Shooting'
+    | 'Passing'
+    | 'Dribbling'
+    | 'Defense'
+    | 'Physical';
+}

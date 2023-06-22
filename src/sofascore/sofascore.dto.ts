@@ -59,4 +59,18 @@ export class SofascorePostDto {
   @ApiProperty({ description: 'Wpisz procent celnych podań' })
   @IsNumber()
   PercentAccuracyPasses: number;
+
+  @ApiProperty({ description: 'Wpisz liczbę minut' })
+  @IsNumber()
+  Minutes: number;
+
+  @ApiProperty({ description: 'Wpisz średnią ocenę' })
+  @IsNumber()
+  Rating: number;
+}
+
+export class SofascoreGetParamDto {
+  @ApiProperty({ description: 'Wpisz imię i nazwisko zawodnika' })
+  @IsString()
+  name: string;
 }

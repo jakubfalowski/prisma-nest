@@ -1,5 +1,5 @@
-import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { ParamDto, TeamPostDto } from './team.dto';
+import { Body, Controller, Get, Post } from '@nestjs/common';
+import { TeamPostDto } from './team.dto';
 import { TeamService } from './team.service';
 
 @Controller('team')
@@ -13,6 +13,11 @@ export class TeamController {
     } catch (error) {
       throw error;
     }
+  }
+
+  @Get('/get-teams')
+  async getPlayerId() {
+    return this.teamService.getTeams();
   }
 
   // @Get('/get-matches-team')

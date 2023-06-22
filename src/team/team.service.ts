@@ -12,6 +12,10 @@ export class TeamService {
     });
   }
 
+  async getTeams() {
+    return await this.prismaService.team.findMany({});
+  }
+
   // async getMatchesByTeamId(id: number) {
   //   const matches = await this.prismaService.matches.findMany({
   //     where: {
