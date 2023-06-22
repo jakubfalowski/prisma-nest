@@ -36,3 +36,15 @@ export class ParamDto {
   @IsString()
   teamId: string;
 }
+
+export class ParamRoundDto {
+  @ApiProperty({ description: 'Wpisz kolejke' })
+  @IsString()
+  round: string;
+}
+
+export class ParamIdDto {
+  @ApiProperty({ description: 'Wpisz ID meczu' })
+  @IsString()
+  id: string;
+}
