@@ -29,7 +29,7 @@ export class SofascoreService {
   async getMaxRatings() {
     const data = await this.prismaService.$queryRawUnsafe(
       `SELECT DISTINCT MAX(sofascore.Goals), MAX(sofascore.Shots), MAX(sofascore.Dribbling), MAX(sofascore.KeyPasses), MAX(sofascore.DangerousSituation), MAX(sofascore.Shots), MAX(sofascore.PercentAccuracyPasses), MAX(sofascore.BeingFouled), MAX(sofascore.Clearances), MAX(sofascore.Interceptions), MAX(sofascore.Minutes), MAX(sofascore.PercentGround), MAX(sofascore.PercentHeader), MAX(sofascore.Rating), MAX(sofascore.Tackles)
-        FROM karty.sofascore WHERE futhead.Name = fminside.Name`,
+        FROM karty.sofascore`,
     );
     return data;
   }

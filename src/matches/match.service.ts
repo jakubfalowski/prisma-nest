@@ -44,19 +44,16 @@ export class MatchService {
 
   async getMatchesByTeamId(teamId: string) {
     const parsedTeamId = parseInt(teamId);
-    const matches = await this.prismaService.matches.findMany({
-      where: {
-        OR: [{ id_home: parsedTeamId }, { id_away: parsedTeamId }],
-      },
-    });
+    const data = await this.prismaService.$queryRawUnsafe(
+      `SELECT matches.*, t1.logoUrl AS logo_home, t2.logoUrl AS logo_away
+        FROM matches
+        JOIN team AS t1 ON matches.id_home = t1.id
+        JOIN team AS t2 ON matches.id_away = t2.id
+        WHERE (matches.id_home = ${parsedTeamId} OR matches.id_away = ${parsedTeamId})
+        ORDER BY CAST(matches.round AS UNSIGNED) DESC`,
+    );
 
-    matches.sort((a, b) => {
-      const roundA = parseInt(a.round);
-      const roundB = parseInt(b.round);
-      return roundB - roundA;
-    });
-
-    return matches;
+    return data;
   }
 
   async getHomeMatchesByTeamId(teamId: string) {
@@ -90,12 +87,10 @@ export class MatchService {
   }
 
   async getMatchesById(Id: string) {
-    const match = await this.prismaService.matches.findFirst({
-      where: {
-        id: parseInt(Id),
-      },
-    });
-
-    return match;
+    const data = await this.prismaService.$queryRawUnsafe(
+      `SELECT *
+        FROM karty.matches WHERE id = ${Id} LIMIT 1`,
+    );
+    return data[0];
   }
 }
