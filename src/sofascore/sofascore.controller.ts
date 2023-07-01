@@ -1,7 +1,9 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
 import { SofascoreGetParamDto, SofascorePostDto } from './sofascore.dto';
 import { SofascoreService } from './sofascore.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Sofascore')
 @Controller('sofascore')
 export class SofascoreController {
   constructor(private readonly sofascoreService: SofascoreService) {}

@@ -48,3 +48,13 @@ export class ParamIdDto {
   @IsString()
   id: string;
 }
+
+export class ParamBetimateDto {
+  @ApiProperty({ description: 'Wpisz nazwe gospodarza' })
+  @IsString()
+  home: string;
+
+  @ApiProperty({ description: 'Wpisz nazwe gościa' })
+  @IsString()
+  away: string;
+}

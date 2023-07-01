@@ -1,8 +1,15 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { ParamDto, ParamIdDto, ParamRoundDto } from 'src/matches/match.dto';
+import { ApiTags } from '@nestjs/swagger';
+import {
+  ParamBetimateDto,
+  ParamDto,
+  ParamIdDto,
+  ParamRoundDto,
+} from 'src/matches/match.dto';
 import { MatchPostDto } from './match.dto';
 import { MatchService } from './match.service';
 
+@ApiTags('Matches')
 @Controller('match')
 export class MatchController {
   constructor(private readonly matchService: MatchService) {}
@@ -39,5 +46,10 @@ export class MatchController {
   @Get('/get-matches-by-id')
   async getMatch(@Query() match: ParamIdDto) {
     return this.matchService.getMatchesById(match.id);
+  }
+
+  @Get('/get-betimate-by-teams')
+  async getBetimate(@Query() teams: ParamBetimateDto) {
+    return this.matchService.getBetimateFromTeams(teams.home, teams.away);
   }
 }

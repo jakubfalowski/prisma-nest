@@ -93,4 +93,11 @@ export class MatchService {
     );
     return data[0];
   }
+
+  async getBetimateFromTeams(home: string, away: string) {
+    const data = await this.prismaService.$queryRawUnsafe(
+      `SELECT * FROM karty.betimate WHERE homeTeam = '${home}' AND awayTeam = '${away}'`,
+    );
+    return data[0];
+  }
 }

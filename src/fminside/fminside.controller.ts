@@ -1,7 +1,13 @@
 import { Body, Controller, Get, Post, Query } from '@nestjs/common';
-import { FminsideGetParamDto, FminsideGetStatParamDto, FminsidePostDto } from './fminside.dto';
+import {
+  FminsideGetParamDto,
+  FminsideGetStatParamDto,
+  FminsidePostDto,
+} from './fminside.dto';
 import { FminsideService } from './fminside.service';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('Football Manager')
 @Controller('fminside')
 export class FminsideController {
   constructor(private readonly fminsideService: FminsideService) {}
