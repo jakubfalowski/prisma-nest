@@ -61,7 +61,7 @@ export class FminsideService {
               FROM futhead
               JOIN fminside ON futhead.Name = fminside.Name
           ) AS ranked_players
-          WHERE club_rank <= 5
+          WHERE club_rank <= 11
           GROUP BY Club
       ) AS top_players_sorted
       ORDER BY rank_order;

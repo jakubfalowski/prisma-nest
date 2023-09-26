@@ -50,7 +50,7 @@ export class MatchService {
         JOIN team AS t1 ON matches.id_home = t1.id
         JOIN team AS t2 ON matches.id_away = t2.id
         WHERE (matches.id_home = ${parsedTeamId} OR matches.id_away = ${parsedTeamId})
-        ORDER BY CAST(matches.round AS UNSIGNED) DESC`,
+        ORDER BY matches.startYear DESC, CAST(matches.round AS UNSIGNED) DESC`,
     );
 
     return data;
@@ -58,30 +58,28 @@ export class MatchService {
 
   async getHomeMatchesByTeamId(teamId: string) {
     const parsedTeamId = parseInt(teamId);
-    const matches = await this.prismaService.matches.findMany({
-      where: { id_home: parsedTeamId },
-    });
-
-    matches.sort((a, b) => {
-      const roundA = parseInt(a.round);
-      const roundB = parseInt(b.round);
-      return roundB - roundA;
-    });
+    const matches = await this.prismaService.$queryRawUnsafe(
+      `SELECT matches.*, t1.logoUrl AS logo_home, t2.logoUrl AS logo_away
+        FROM matches
+        JOIN team AS t1 ON matches.id_home = t1.id
+        JOIN team AS t2 ON matches.id_away = t2.id
+        WHERE matches.id_home = ${parsedTeamId}
+        ORDER BY matches.startYear DESC, CAST(matches.round AS UNSIGNED) DESC`,
+    );
 
     return matches;
   }
 
   async getAwayMatchesByTeamId(teamId: string) {
     const parsedTeamId = parseInt(teamId);
-    const matches = await this.prismaService.matches.findMany({
-      where: { id_away: parsedTeamId },
-    });
-
-    matches.sort((a, b) => {
-      const roundA = parseInt(a.round);
-      const roundB = parseInt(b.round);
-      return roundB - roundA;
-    });
+    const matches = await this.prismaService.$queryRawUnsafe(
+      `SELECT matches.*, t1.logoUrl AS logo_home, t2.logoUrl AS logo_away
+        FROM matches
+        JOIN team AS t1 ON matches.id_home = t1.id
+        JOIN team AS t2 ON matches.id_away = t2.id
+        WHERE matches.id_away = ${parsedTeamId}
+        ORDER BY matches.startYear DESC, CAST(matches.round AS UNSIGNED) DESC`,
+    );
 
     return matches;
   }
